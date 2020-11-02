@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/965cdbb5ce.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="main-container">
+            <div id="display-container">
+                <div id="display-styled-container">
+                    <div id="display-ops"></div>
+                    <div id="display-calc">0</div>
+                </div>
+            </div>
+            <div id="btn-container">
+                <div class="btn-div">
+                    <button data-key="ac" class="btn-other" id="btn-clear">AC</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="plusMin" class="btn-other" id="btn-plus-min">
+                        +/-
+                    </button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="Backspace" class="btn-other" id="btn-back">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="/" class="btn-operator" value="/">/</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="7" class="btn-number" value="7">7</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="8" class="btn-number" value="8">8</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="9" class="btn-number" value="9">9</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="*" class="btn-operator" value="*">*</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="4" class="btn-number" value="4">4</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="5" class="btn-number" value="5">5</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="6" class="btn-number" value="6">6</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="-" class="btn-operator" value="-">-</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="1" class="btn-number" value="1">1</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="2" class="btn-number" value="2">2</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="3" class="btn-number" value="3">3</button>
+                </div>
+                <div class="btn-div">
+                    <button data-key="+" class="btn-operator" value="+">+</button>
+                </div>
+                <div class="btn-div" id="btn-zero">
+                    <button class="btn-number" data-key="0" id="btn-zero" value="0">
+                        0
+                    </button>
+                </div>
+                <div class="btn-div">
+                    <button class="btn-other" data-key="." id="btn-dot" value=".">
+                        .
+                    </button>
+                </div>
+                <div class="btn-div">
+                    <button id="btn-equals" data-key="Enter" value="="><strong>=</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

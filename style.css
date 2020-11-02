@@ -1,0 +1,121 @@
+body {
+    text-align: center;
+    background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
+}
+
+#btn-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 75%;
+    background-color: white;
+}
+
+#btn-zero {
+    grid-column: span 2;
+}
+
+button {
+    font-family: 'Roboto Mono', monospace;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    border-radius: 2px;
+    transition: 0.5s;
+    font-size: 28px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: rgba(180, 103, 52, 0);
+    cursor: pointer;
+    transform: scale(1.07);
+}
+
+button:focus {
+    outline: none;
+}
+
+#btn-equals {
+    background-color: turquoise;
+}
+
+.btn-number {
+    background-color: #b3be31;
+}
+
+.btn-operator {
+    background-color: rgb(62, 233, 133);
+}
+
+.btn-other {
+    background-color: cadetblue;
+    font-size: 1.4rem;
+}
+
+#btn-zero {
+    background-color: rgb(105, 221, 206);
+}
+
+#container {
+    box-sizing: border-box;
+    width: 350px;
+    height: 500px;
+    border: solid lightgray 1px;
+    border-radius: 8px;
+    margin: 3rem auto auto auto;
+    background-color: #000000;
+}
+
+#display-calc {
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    padding-right: 1rem;
+    height: 60%;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: xx-large;
+}
+
+#display-container {
+    display: block;
+    height: 15%;
+    /* background-color: lightgray; */
+    padding: 6px 0;
+}
+
+#display-styled-container {
+    color: rgb(223, 134, 82);
+    display: flex;
+    height: 95%;
+    border: ridge 2px;
+    border-radius: 4px;
+    flex-direction: column;
+    background-color: rgba(155, 112, 223, 0.2);
+}
+
+#display-ops {
+    padding-right: 1rem;
+    font-style: italic;
+    height: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footer {
+    display: inline-block;
+    margin: 3rem 0 auto 0;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#main-container {
+    box-sizing: border-box;
+    width: 320px;
+    height: 520px;
+    margin: 8px auto auto auto;
+    /* margin: 6rem auto auto auto; */
+}
