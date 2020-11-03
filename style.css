@@ -1,8 +1,10 @@
+/* This linear-gradient property makes the background of the application look pretty */
 body {
     text-align: center;
     background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
 }
 
+/* This just sets the calculator to display it in grid form and stuff */
 #btn-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -11,10 +13,12 @@ body {
     background-color: white;
 }
 
+/* This sets the zero button to span the width of two buttons */
 #btn-zero {
     grid-column: span 2;
 }
 
+/* This simply sets the properties of the button */
 button {
     font-family: 'Roboto Mono', monospace;
     width: 100%;
@@ -26,6 +30,7 @@ button {
     font-size: 28px;
 }
 
+/* This just changes the properties of the button when the mouse hovers over it */
 button:hover {
     transform: scale(1.05);
     background-color: rgba(180, 103, 52, 0);
@@ -37,6 +42,7 @@ button:focus {
     outline: none;
 }
 
+/* These special classes just refer to the different types of buttons present */
 #btn-equals {
     background-color: turquoise;
 }
@@ -58,6 +64,7 @@ button:focus {
     background-color: rgb(105, 221, 206);
 }
 
+/* This selector just refers to the entire calculator */
 #container {
     box-sizing: border-box;
     width: 350px;
@@ -85,6 +92,7 @@ button:focus {
     padding: 6px 0;
 }
 
+/* This is the main styled display container */
 #display-styled-container {
     color: rgb(223, 134, 82);
     display: flex;
@@ -102,14 +110,6 @@ button:focus {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-
-.footer {
-    display: inline-block;
-    margin: 3rem 0 auto 0;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto Mono', monospace;
 }
 
 #main-container {
