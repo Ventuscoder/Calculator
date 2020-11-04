@@ -19,24 +19,20 @@
                 <div id="display-styled-container">
                     <!-- These two divs are to preview the expression and the evaluation of the expression respectively -->
                     <div id="display-ops"></div>
-                    <div id="display-calc">0</div>
+                    <div id="display-calc"></div>
                 </div>
             </div>
             <div id="btn-container">
                 <!-- The btn-div class basically identifies a button in the calculator -->
                 <!-- Some buttons have different classes because they perform different functions -->
                 <div class="btn-div">
-                    <button data-key="ac" class="btn-other" id="btn-clear">AC</button>
+                    <button data-key="ac" class="btn-other" id="btn-clear" onclick="clearDisplay()">AC</button>
                 </div>
                 <div class="btn-div">
-                    <button data-key="plusMin" class="btn-other" id="btn-plus-min">
-                        +/-
-                    </button>
+                    <button data-key="plusMin" class="btn-other" id="btn-plus-min">+/-</button>
                 </div>
                 <div class="btn-div">
-                    <button data-key="Backspace" class="btn-other" id="btn-back">
-                        <i class="fas fa-backspace"></i>
-                    </button>
+                    <button data-key="Backspace" class="btn-other" id="btn-back"><i class="fas fa-backspace"></i></button>
                 </div>
                 <div class="btn-div">
                     <button data-key="/" class="btn-operator" value="/">/</button>
@@ -78,14 +74,10 @@
                     <button data-key="+" class="btn-operator" value="+">+</button>
                 </div>
                 <div class="btn-div" id="btn-zero">
-                    <button class="btn-number" data-key="0" id="btn-zero" value="0">
-                        0
-                    </button>
+                    <button class="btn-number" data-key="0" id="btn-zero" value="0">0</button>
                 </div>
                 <div class="btn-div">
-                    <button class="btn-other" data-key="." id="btn-dot" value=".">
-                        .
-                    </button>
+                    <button class="btn-other" data-key="." id="btn-dot" value=".">.</button>
                 </div>
                 <div class="btn-div">
                     <button id="btn-equals" data-key="Enter" value="="><strong>=</strong></button>
