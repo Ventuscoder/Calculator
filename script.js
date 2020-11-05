@@ -16,17 +16,70 @@ let displayStore = {
     answer: null,
     firstExists: false,
     secondExists: false,
+    operatorExists: false,
     decimalUsed: false,
     answerReceived: false
 };
 
-function inputNum(num){
-    eqDisplay.textContent += num;
+function checkAvail() {
+    if (displayStore['operatorExists']) {
+        if (displayStore['second'] == null) {
+            return true;
+        } else {
+            if (displayStore['second'].length <= 5) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    } else {
+        if (displayStore['first'] == null) {
+            return true;
+        } else {
+            if (displayStore['first'].length <= 5) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+}
+
+function inputNum(num) {
+    if (checkAvail() == true) {
+        if (displayStore['operatorExists']) {
+            eqDisplay.textContent += num;
+            displayStore['second'] = eqDisplay.textContent;
+            displayStore['secondExists'] = true;
+        } else {
+            eqDisplay.textContent += num;
+            displayStore['first'] = eqDisplay.textContent;
+            displayStore['firstExists'] = true;
+        }
+    } else {
+        msgBar.textContent = 'Length is too long for the calculator to hold';
+    }
+}
+
+function inputOpr(opr) {
+    if (displayStore['operatorExists']) {
+        msgBar.textContent = 'An operator is already present!';
+    } else {
+        eqDisplay.textContent += opr;
+        displayStore['operatorExists'] = true;
+        displayStore['operator'] = opr
+    }
 }
 
 function clearDisplay() {
    eqDisplay.textContent = ""; 
 }
 
-numBtns.forEach(btn => btn.addEventListener('click', () => eqDisplay.textContent.length <= 14 ? inputNum(btn.value) : msgBar.textContent = "Length cannot exceed 15 characters!"));
+function delChar() {
+    eqDisplay.textContent = eqDisplay.textContent.slice(0, -1);
+}
+
+numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
+oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
 clearBtn.addEventListener('click', clearDisplay);
+bckspcBtn.addEventListener('click', delChar);
