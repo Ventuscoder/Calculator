@@ -9,17 +9,7 @@ const bckspcBtn = document.querySelector('#btn-back');
 const dotBtn = document.querySelector('#btn-dot');
 const msgBar = document.querySelector('.msg');
 
-let displayStore = {
-    first: null,
-    second: null,
-    operator: null,
-    answer: null,
-    firstExists: false,
-    secondExists: false,
-    operatorExists: false,
-    decimalUsed: false,
-    answerReceived: false
-};
+let displayStore = {};
 
 function checkAvail() {
     if (displayStore['operatorExists']) {
@@ -72,11 +62,30 @@ function inputOpr(opr) {
 }
 
 function clearDisplay() {
-   eqDisplay.textContent = ""; 
+   eqDisplay.textContent = ''; 
 }
 
 function delChar() {
     eqDisplay.textContent = eqDisplay.textContent.slice(0, -1);
+}
+
+function updateDisplay() {
+    if (displayStore['first']) {
+        eqDisplay.textContent = displayStore['first'];
+    } else {
+        eqDisplay.textContent = '';
+        return;
+    }
+    if (displayStore['operator']) {
+        eqDisplay.textContent += displayStore['operator'];
+    } else {
+        return;
+    }
+    if (displayStore['second']) {
+        eqDisplay.textContent += displayStore['second'];
+    } else {
+        return;
+    }
 }
 
 numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
