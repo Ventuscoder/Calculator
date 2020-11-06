@@ -36,28 +36,29 @@ function checkAvail() {
 }
 
 function inputNum(num) {
-    if (checkAvail() == true) {
-        if (displayStore['operatorExists']) {
-            eqDisplay.textContent += num;
-            displayStore['second'] = eqDisplay.textContent;
-            displayStore['secondExists'] = true;
+    if (displayStore['operator']) {
+        if (displayStore['second']) {
+            displayStore['second'] += num;
+            updateDisplay();
         } else {
-            eqDisplay.textContent += num;
-            displayStore['first'] = eqDisplay.textContent;
-            displayStore['firstExists'] = true;
+            displayStore['second'] = num;
+            updateDisplay();
         }
+    } else if (displayStore['first']) {
+        displayStore['first'] += num;
+        updateDisplay();
     } else {
-        msgBar.textContent = 'Length is too long for the calculator to hold';
+        displayStore['first'] = num;
+        updateDisplay();
     }
 }
 
 function inputOpr(opr) {
-    if (displayStore['operatorExists']) {
+    if (displayStore['operator']) {
         msgBar.textContent = 'An operator is already present!';
     } else {
-        eqDisplay.textContent += opr;
-        displayStore['operatorExists'] = true;
-        displayStore['operator'] = opr
+        displayStore['operator'] = operator;
+        updateDisplay();
     }
 }
 
