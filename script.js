@@ -70,7 +70,22 @@ function clearDisplay() {
 }
 
 function delChar() {
-    eqDisplay.textContent = eqDisplay.textContent.slice(0, -1);
+    if (displayStore['second']) {
+        displayStore['second'] = displayStore['second'].slice(0, -1);
+        updateDisplay();
+    } else {
+        if (displayStore['operator']) {
+            delete displayStore['operator'];
+            updateDisplay();
+        } else {
+            if (displayStore['first']) {
+                displayStore['first'] = displayStore['first'].slice(0, -1);
+                updateDisplay();
+            } else {
+                return;
+            }
+        }
+    }
 }
 
 function updateDisplay() {
