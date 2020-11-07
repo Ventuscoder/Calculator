@@ -63,7 +63,10 @@ function inputOpr(opr) {
 }
 
 function clearDisplay() {
-   eqDisplay.textContent = ''; 
+   delete displayStore['first'];
+   delete displayStore['operator'];
+   delete displayStore['second'];
+   updateDisplay();
 }
 
 function delChar() {
