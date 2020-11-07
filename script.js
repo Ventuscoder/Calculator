@@ -12,22 +12,22 @@ const msgBar = document.querySelector('.msg');
 let displayStore = {};
 
 function checkAvail() {
-    if (displayStore['operatorExists']) {
-        if (displayStore['second'] == null) {
+    if (displayStore['second']) {
+        if (displayStore['second'].length < 7) {
             return true;
         } else {
-            if (displayStore['second'].length <= 5) {
-                return false;
-            } else {
-                return true;
-            }
+            return false;
         }
     } else {
-        if (displayStore['first'] == null) {
+        if (displayStore['operator']) {
             return true;
         } else {
-            if (displayStore['first'].length <= 5) {
-                return false;
+            if (displayStore['first']) {
+                if (displayStore['first'].length < 7) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return true;
             }
@@ -36,20 +36,24 @@ function checkAvail() {
 }
 
 function inputNum(num) {
-    if (displayStore['operator']) {
-        if (displayStore['second']) {
-            displayStore['second'] += num;
+    if (checkAvail() == true) {
+        if (displayStore['operator']) {
+            if (displayStore['second']) {
+                displayStore['second'] += num;
+                updateDisplay();
+            } else {
+                displayStore['second'] = num;
+                updateDisplay();
+            }
+        } else if (displayStore['first']) {
+            displayStore['first'] += num;
             updateDisplay();
         } else {
-            displayStore['second'] = num;
+            displayStore['first'] = num;
             updateDisplay();
         }
-    } else if (displayStore['first']) {
-        displayStore['first'] += num;
-        updateDisplay();
     } else {
-        displayStore['first'] = num;
-        updateDisplay();
+        msgBar.textContent = 'Sorry the number of characters given has crossed the limit!';
     }
 }
 
@@ -59,7 +63,7 @@ function inputOpr(opr) {
     } else {
         displayStore['operator'] = operator;
         updateDisplay();
-    }
+    7
 }
 
 function clearDisplay() {
