@@ -61,7 +61,7 @@ function inputOpr(opr) {
     if (displayStore['operator']) {
         msgBar.textContent = 'An operator is already present!';
     } else {
-        displayStore['operator'] = operator;
+        displayStore['operator'] = opr;
         updateDisplay();
     }
 }
