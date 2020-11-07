@@ -75,16 +75,24 @@ function clearDisplay() {
 
 function delChar() {
     if (displayStore['second']) {
-        displayStore['second'] = displayStore['second'].slice(0, -1);
-        updateDisplay();
+        if (displayStore['second'].length == 1) {
+            delete displayStore['second'];
+        } else {
+            displayStore['second'] = displayStore['second'].slice(0, -1);
+            updateDisplay();   
+        }
     } else {
         if (displayStore['operator']) {
             delete displayStore['operator'];
             updateDisplay();
         } else {
             if (displayStore['first']) {
-                displayStore['first'] = displayStore['first'].slice(0, -1);
-                updateDisplay();
+                if (displayStore['first'].length == 1) {
+                    delete displayStore['first'];
+                } else {
+                    displayStore['first'] = displayStore['first'].slice(0, -1);
+                    updateDisplay();   
+                }
             } else {
                 return;
             }
