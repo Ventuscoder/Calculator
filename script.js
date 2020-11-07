@@ -63,7 +63,7 @@ function inputOpr(opr) {
     } else {
         displayStore['operator'] = operator;
         updateDisplay();
-    7
+    }
 }
 
 function clearDisplay() {
