@@ -100,6 +100,30 @@ function delChar() {
     }
 }
 
+function inputDotBtn() {
+    if (displayStore['second']) {
+        if (displayStore['second'].includes(".")) {
+            msgBar.textContent = 'Sorry, a decimal point already exists!';
+        } else {
+            displayStore['second'] += '.';
+            updateDisplay();
+        }
+    } else if (displayStore['operator']) {
+        displayStore['second'] = "0.";
+        updateDisplay();
+    } else if (displayStore['first']) {
+        if (displayStore['first'].includes(".")) {
+            msgBar.textContent = 'Sorry, a decimal point already exists!';
+        } else {
+            displayStore['first'] += '.';
+            updateDisplay();
+        }
+    } else {
+        displayStore['first'] = '0.';
+        updateDisplay();
+    }
+}
+
 function updateDisplay() {
     if (displayStore['first']) {
         eqDisplay.textContent = displayStore['first'];
@@ -121,5 +145,6 @@ function updateDisplay() {
 
 numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
 oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
+dotBtn.addEventListener('click', () => inputDotBtn());
 clearBtn.addEventListener('click', clearDisplay);
 bckspcBtn.addEventListener('click', delChar);
