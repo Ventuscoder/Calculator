@@ -158,6 +158,21 @@ function togglePlusMin() {
     }
 }
 
+function add(one, two) {
+    expDisplay.textContent = `${eqDisplay.textContent}=`;
+    displayStore['answer'] = toString(parseFloat(displayStore['first'])+parseFloat(displayStore['second']));
+    eqDisplay.textContent = displayStore['answer'];
+    deleteEventListener();
+}
+
+function deleteEventListener() {
+    numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
+    oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
+    dotBtn.removeEventListener('click', () => inputDotBtn());
+    plusMinBtn.removeEventListener('click', () => togglePlusMin());
+    bckspcBtn.removeEventListener('click', delChar);
+}
+
 function updateDisplay() {
     if (displayStore['first']) {
         eqDisplay.textContent = displayStore['first'];
