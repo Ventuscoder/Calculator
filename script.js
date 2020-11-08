@@ -101,26 +101,30 @@ function delChar() {
 }
 
 function inputDotBtn() {
-    if (displayStore['second']) {
-        if (displayStore['second'].includes(".")) {
-            msgBar.textContent = 'Sorry, a decimal point already exists!';
-        } else {
-            displayStore['second'] += '.';
+    if (checkAvail() == true) {
+        if (displayStore['second']) {
+            if (displayStore['second'].includes(".")) {
+                msgBar.textContent = 'Sorry, a decimal point already exists!';
+            } else {
+                displayStore['second'] += '.';
+                updateDisplay();
+            }
+        } else if (displayStore['operator']) {
+            displayStore['second'] = "0.";
             updateDisplay();
-        }
-    } else if (displayStore['operator']) {
-        displayStore['second'] = "0.";
-        updateDisplay();
-    } else if (displayStore['first']) {
-        if (displayStore['first'].includes(".")) {
-            msgBar.textContent = 'Sorry, a decimal point already exists!';
+        } else if (displayStore['first']) {
+            if (displayStore['first'].includes(".")) {
+                msgBar.textContent = 'Sorry, a decimal point already exists!';
+            } else {
+                displayStore['first'] += '.';
+                updateDisplay();
+            }
         } else {
-            displayStore['first'] += '.';
+            displayStore['first'] = '0.';
             updateDisplay();
         }
     } else {
-        displayStore['first'] = '0.';
-        updateDisplay();
+        msgBar.textContent = 'Sorry the number of characters given has crossed the limit!';
     }
 }
 
