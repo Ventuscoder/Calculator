@@ -13,7 +13,7 @@ let displayStore = {};
 
 function checkAvail() {
     if (displayStore['second']) {
-        if (displayStore['second'].length < 7) {
+        if (displayStore['second'].length < 8) {
             return true;
         } else {
             return false;
@@ -23,7 +23,7 @@ function checkAvail() {
             return true;
         } else {
             if (displayStore['first']) {
-                if (displayStore['first'].length < 7) {
+                if (displayStore['first'].length < 8) {
                     return true;
                 } else {
                     return false;
@@ -128,6 +128,36 @@ function inputDotBtn() {
     }
 }
 
+function togglePlusMin() {
+    if (checkAvail() == true) {
+        if (displayStore['second']) {
+            if (displayStore['second'].includes("-")) {
+                displayStore['second'] = displayStore['second'].substring(1);
+                updateDisplay();
+            } else {
+                displayStore['second'] = `-${displayStore['second']}`;
+                updateDisplay();
+            }
+        } else if (displayStore['operator']) {
+            displayStore['second'] = '-0';
+            updateDisplay();
+        } else if (displayStore['first']) {
+            if (displayStore['first'].includes("-")) {
+                displayStore['first'] = displayStore['first'].substring(1);
+                updateDisplay();
+            } else {
+                displayStore['first'] = `-${displayStore['first']}`;
+                updateDisplay();
+            }
+        } else {
+            displayStore['first'] = '-0';
+            updateDisplay();
+        }
+    } else {
+        msgBar.textContent = 'Sorry the number of characters given has crossed the limit!';
+    }
+}
+
 function updateDisplay() {
     if (displayStore['first']) {
         eqDisplay.textContent = displayStore['first'];
@@ -150,5 +180,6 @@ function updateDisplay() {
 numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
 oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
 dotBtn.addEventListener('click', () => inputDotBtn());
+plusMinBtn.addEventListener('click', () => togglePlusMin());
 clearBtn.addEventListener('click', clearDisplay);
 bckspcBtn.addEventListener('click', delChar);
