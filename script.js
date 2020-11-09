@@ -173,6 +173,14 @@ function deleteEventListener() {
     bckspcBtn.removeEventListener('click', delChar);
 }
 
+function reAddEventListener() {
+    numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
+    oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
+    dotBtn.removeEventListener('click', () => inputDotBtn());
+    plusMinBtn.removeEventListener('click', () => togglePlusMin());
+    bckspcBtn.removeEventListener('click', delChar);
+}
+
 function updateDisplay() {
     if (displayStore['first']) {
         eqDisplay.textContent = displayStore['first'];
