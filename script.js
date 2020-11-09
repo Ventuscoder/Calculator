@@ -195,11 +195,11 @@ function deleteEventListener() {
 }
 
 function reAddEventListener() {
-    numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
-    oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
-    dotBtn.removeEventListener('click', () => inputDotBtn());
-    plusMinBtn.removeEventListener('click', () => togglePlusMin());
-    bckspcBtn.removeEventListener('click', delChar);
+    numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
+    oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
+    dotBtn.addEventListener('click', () => inputDotBtn());
+    plusMinBtn.addEventListener('click', () => togglePlusMin());
+    bckspcBtn.addEventListener('click', delChar);
 }
 
 function updateDisplay() {
