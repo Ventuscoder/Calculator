@@ -165,6 +165,27 @@ function add(one, two) {
     deleteEventListener();
 }
 
+function subtract(one, two) {
+    expDisplay.textContent = `${eqDisplay.textContent}=`;
+    displayStore['answer'] = toString(parseFloat(displayStore['first'])-parseFloat(displayStore['second']));
+    eqDisplay.textContent = displayStore['answer'];
+    deleteEventListener();
+}
+
+function multiply(one, two) {
+    expDisplay.textContent = `${eqDisplay.textContent}=`;
+    displayStore['answer'] = toString(parseFloat(displayStore['first'])*parseFloat(displayStore['second']));
+    eqDisplay.textContent = displayStore['answer'];
+    deleteEventListener();
+}
+
+function divide(one, two) {
+    expDisplay.textContent = `${eqDisplay.textContent}=`;
+    displayStore['answer'] = toString(parseFloat(displayStore['first'])/parseFloat(displayStore['second']));
+    eqDisplay.textContent = displayStore['answer'];
+    deleteEventListener();
+}
+
 function deleteEventListener() {
     numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
     oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
