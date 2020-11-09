@@ -159,31 +159,19 @@ function togglePlusMin() {
 }
 
 function add(one, two) {
-    expDisplay.textContent = `${eqDisplay.textContent}=`;
-    displayStore['answer'] = toString(parseFloat(displayStore['first'])+parseFloat(displayStore['second']));
-    eqDisplay.textContent = displayStore['answer'];
-    deleteEventListener();
+    return one+two;
 }
 
 function subtract(one, two) {
-    expDisplay.textContent = `${eqDisplay.textContent}=`;
-    displayStore['answer'] = toString(parseFloat(displayStore['first'])-parseFloat(displayStore['second']));
-    eqDisplay.textContent = displayStore['answer'];
-    deleteEventListener();
+    return one-two;
 }
 
 function multiply(one, two) {
-    expDisplay.textContent = `${eqDisplay.textContent}=`;
-    displayStore['answer'] = toString(parseFloat(displayStore['first'])*parseFloat(displayStore['second']));
-    eqDisplay.textContent = displayStore['answer'];
-    deleteEventListener();
+    return one*two;
 }
 
 function divide(one, two) {
-    expDisplay.textContent = `${eqDisplay.textContent}=`;
-    displayStore['answer'] = toString(parseFloat(displayStore['first'])/parseFloat(displayStore['second']));
-    eqDisplay.textContent = displayStore['answer'];
-    deleteEventListener();
+    return one/two;
 }
 
 function deleteEventListener() {
@@ -200,6 +188,43 @@ function reAddEventListener() {
     dotBtn.addEventListener('click', () => inputDotBtn());
     plusMinBtn.addEventListener('click', () => togglePlusMin());
     bckspcBtn.addEventListener('click', delChar);
+}
+
+function calculate() {
+    if (eqDisplay.textContent == "") {
+        expDisplay.textContent = "0";
+        eqDisplay.textContent = "0";
+        deleteEventListener();
+    } else {
+        if (displayStore['second']) {
+            let result;
+            let operator = displayStore['operator'];
+            if (operator == "+") {
+                result = add(parseFloat(displayStore['first']), parseFloat(displayStore['second']));
+            } else if (operator == "-") {
+                result = subtract(parseFloat(displayStore['first']), parseFloat(displayStore['second']));
+            } else if (operator == "*") {
+                result = multiply(parseFloat(displayStore['first']), parseFloat(displayStore['second']));
+            } else {
+                if (displayStore['first'] == "0" || displayStore['second'] == "0") {
+                    msgBar.textContent = "Sorry, can't divide by zero or from zero!";
+                    return;
+                } else {
+                    result = divide(parseFloat(displayStore['first']), parseFloat(displayStore['second']));
+                }
+            }
+            expDisplay.textContent = `${displayStore['first']}${displayStore['operator']}${displayStore['second']}=`;
+            eqDisplay.textContent = result;
+            deleteEventListener();
+        } else if (displayStore['operator']) {
+            msgBar.textContent = "Sorry, a second number needs to be present!";
+            return;
+        } else {
+            expDisplay.textContent = displayStore['operator'];
+            eqDisplay.textContent = displayStore['operator'];
+            deleteEventListener();
+        }
+    }
 }
 
 function updateDisplay() {
