@@ -68,7 +68,7 @@ function inputOpr(opr) {
 }
 
 function clearDisplay() {
-    if (displayStore['solved']) {
+    if (displayStore['solved'] == true) {
         delete displayStore['first'];
         delete displayStore['operator'];
         delete displayStore['second'];
@@ -185,21 +185,21 @@ function divide(one, two) {
 }
 
 function deleteEventListener() {
+    numBtns.forEach(btn => btn.removeEventListener('click', () => { return; }));
+    oprBtns.forEach(btn => btn.removeEventListener('click', () => { return; }));
+    dotBtn.removeEventListener('click', () => { return; });
+    plusMinBtn.removeEventListener('click', () => { return; });
+    bckspcBtn.removeEventListener('click', () => { return; });
+    eqBtn.removeEventListener('click', () => { return; });
+}
+
+function reAddEventListener() {
     numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
     oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
     dotBtn.removeEventListener('click', () => inputDotBtn());
     plusMinBtn.removeEventListener('click', () => togglePlusMin());
     bckspcBtn.removeEventListener('click', delChar);
     eqBtn.removeEventListener('click', () => calculate());
-}
-
-function reAddEventListener() {
-    numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
-    oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
-    dotBtn.addEventListener('click', () => inputDotBtn());
-    plusMinBtn.addEventListener('click', () => togglePlusMin());
-    bckspcBtn.addEventListener('click', delChar);
-    eqBtn.addEventListener('click', () => calculate());
 }
 
 function calculate() {
