@@ -8,6 +8,7 @@ const plusMinBtn = document.querySelector('#btn-plus-min');
 const bckspcBtn = document.querySelector('#btn-back');
 const dotBtn = document.querySelector('#btn-dot');
 const msgBar = document.querySelector('.msg');
+const eqBtn = document.querySelector('#btn-equals');
 
 let displayStore = {};
 
@@ -67,10 +68,19 @@ function inputOpr(opr) {
 }
 
 function clearDisplay() {
-   delete displayStore['first'];
-   delete displayStore['operator'];
-   delete displayStore['second'];
-   updateDisplay();
+    if (displayStore['solved']) {
+        delete displayStore['first'];
+        delete displayStore['operator'];
+        delete displayStore['second'];
+        delete displayStore['solved'];
+        expDisplay.textContent = '';
+        reAddEventListener();
+    } else {
+        delete displayStore['first'];
+        delete displayStore['operator'];
+        delete displayStore['second'];
+        updateDisplay();
+    }
 }
 
 function delChar() {
@@ -180,6 +190,7 @@ function deleteEventListener() {
     dotBtn.removeEventListener('click', () => inputDotBtn());
     plusMinBtn.removeEventListener('click', () => togglePlusMin());
     bckspcBtn.removeEventListener('click', delChar);
+    eqBtn.removeEventListener('click', () => calculate());
 }
 
 function reAddEventListener() {
@@ -188,6 +199,7 @@ function reAddEventListener() {
     dotBtn.addEventListener('click', () => inputDotBtn());
     plusMinBtn.addEventListener('click', () => togglePlusMin());
     bckspcBtn.addEventListener('click', delChar);
+    eqBtn.addEventListener('click', () => calculate());
 }
 
 function calculate() {
@@ -215,13 +227,17 @@ function calculate() {
             }
             expDisplay.textContent = `${displayStore['first']}${displayStore['operator']}${displayStore['second']}=`;
             eqDisplay.textContent = result;
+            displayStore['solved'] = true;
             deleteEventListener();
         } else if (displayStore['operator']) {
             msgBar.textContent = "Sorry, a second number needs to be present!";
             return;
         } else {
-            expDisplay.textContent = displayStore['operator'];
-            eqDisplay.textContent = displayStore['operator'];
+            expDisplay.textContent = displayStore['first'];
+            eqDisplay.textContent = displayStore['first'];
+            for (key in displayStore) {
+                if (key !== 'solved') { delete displayStore[key]; } else { continue; }
+            }
             deleteEventListener();
         }
     }
@@ -252,3 +268,4 @@ dotBtn.addEventListener('click', () => inputDotBtn());
 plusMinBtn.addEventListener('click', () => togglePlusMin());
 clearBtn.addEventListener('click', clearDisplay);
 bckspcBtn.addEventListener('click', delChar);
+eqBtn.addEventListener('click', () => calculate());
