@@ -14,7 +14,7 @@ let displayStore = {};
 
 function checkAvail() {
     if (displayStore['second']) {
-        if (displayStore['second'].length < 8) {
+        if (displayStore['second'].length < 7) {
             return true;
         } else {
             return false;
@@ -24,7 +24,7 @@ function checkAvail() {
             return true;
         } else {
             if (displayStore['first']) {
-                if (displayStore['first'].length < 8) {
+                if (displayStore['first'].length < 7) {
                     return true;
                 } else {
                     return false;
@@ -75,6 +75,7 @@ function clearDisplay() {
         delete displayStore['solved'];
         expDisplay.textContent = '';
         reAddEventListener();
+        updateDisplay();
     } else {
         delete displayStore['first'];
         delete displayStore['operator'];
@@ -87,6 +88,7 @@ function delChar() {
     if (displayStore['second']) {
         if (displayStore['second'].length == 1) {
             delete displayStore['second'];
+            updateDisplay();
         } else {
             displayStore['second'] = displayStore['second'].slice(0, -1);
             updateDisplay();   
@@ -139,6 +141,9 @@ function inputDotBtn() {
 }
 
 function togglePlusMin() {
+    if (displayStore['solved'] == true) {
+        return;
+    }
     if (checkAvail() == true) {
         if (displayStore['second']) {
             if (displayStore['second'].includes("-")) {
@@ -198,7 +203,7 @@ function reAddEventListener() {
     oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
     dotBtn.removeEventListener('click', () => inputDotBtn());
     plusMinBtn.removeEventListener('click', () => togglePlusMin());
-    bckspcBtn.removeEventListener('click', delChar);
+    bckspcBtn.removeEventListener('click', () => delChar);
     eqBtn.removeEventListener('click', () => calculate());
 }
 
