@@ -1,3 +1,4 @@
+// Initializing basic variables
 const expDisplay = document.querySelector('#display-ops');
 const eqDisplay = document.querySelector('#display-calc');
 const buttons = document.querySelectorAll('button');
@@ -10,8 +11,10 @@ const dotBtn = document.querySelector('#btn-dot');
 const msgBar = document.querySelector('.msg');
 const eqBtn = document.querySelector('#btn-equals');
 
+// This object stores important data such as the first number, the second one, the operator, the answer and the boolean for solved
 let displayStore = {};
 
+// This function checks if space is available in the calculator to input more characters
 function checkAvail() {
     if (displayStore['second']) {
         if (displayStore['second'].length < 7) {
@@ -36,6 +39,7 @@ function checkAvail() {
     }
 }
 
+// This function simply inputs a number (although it does not look as simple!)
 function inputNum(num) {
     if (checkAvail() == true) {
         if (displayStore['operator']) {
@@ -58,6 +62,7 @@ function inputNum(num) {
     }
 }
 
+// This function inputs an operator and checks if an operator is already present or not
 function inputOpr(opr) {
     if (displayStore['operator']) {
         msgBar.textContent = 'An operator is already present!';
@@ -67,6 +72,7 @@ function inputOpr(opr) {
     }
 }
 
+// This function clears the display when the clear button is clicked
 function clearDisplay() {
     if (displayStore['solved'] == true) {
         delete displayStore['first'];
@@ -84,6 +90,7 @@ function clearDisplay() {
     }
 }
 
+// This function is used to implement the backspace feature in the application
 function delChar() {
     if (displayStore['second']) {
         if (displayStore['second'].length == 1) {
@@ -112,6 +119,7 @@ function delChar() {
     }
 }
 
+// This function adds a decimal button and checks for an existing one
 function inputDotBtn() {
     if (checkAvail() == true) {
         if (displayStore['second']) {
@@ -140,6 +148,7 @@ function inputDotBtn() {
     }
 }
 
+// This function makes the number positive to negative or vice versa
 function togglePlusMin() {
     if (displayStore['solved'] == true) {
         return;
@@ -173,6 +182,7 @@ function togglePlusMin() {
     }
 }
 
+// The below functions simply operate on the numbers based on the operator present and rounds them
 function add(one, two) {
     return Math.round(one+two);
 }
@@ -189,6 +199,7 @@ function divide(one, two) {
     return Math.round(one/two);
 }
 
+// This function removes an already existing event listener and adds a new one except for the clear button
 function deleteEventListener() {
     numBtns.forEach(btn => btn.removeEventListener('click', () => { return; }));
     oprBtns.forEach(btn => btn.removeEventListener('click', () => { return; }));
@@ -198,6 +209,7 @@ function deleteEventListener() {
     eqBtn.removeEventListener('click', () => { return; });
 }
 
+// This function 're'adds the event listeners to the buttons after the deleteEventListener function has been called
 function reAddEventListener() {
     numBtns.forEach(btn => btn.removeEventListener('click', () => inputNum(btn.value)));
     oprBtns.forEach(btn => btn.removeEventListener('click', () => inputOpr(btn.value)));
@@ -207,6 +219,7 @@ function reAddEventListener() {
     eqBtn.removeEventListener('click', () => calculate());
 }
 
+// This large function does a lot of work like calling the basic operating functions
 function calculate() {
     if (eqDisplay.textContent == "") {
         expDisplay.textContent = "0";
@@ -248,6 +261,7 @@ function calculate() {
     }
 }
 
+// This is a rather important function as it serves the deed of updating display by getting values from the displayStore object
 function updateDisplay() {
     if (displayStore['first']) {
         eqDisplay.textContent = displayStore['first'];
@@ -267,6 +281,7 @@ function updateDisplay() {
     }
 }
 
+// These are simple event listeners
 numBtns.forEach(btn => btn.addEventListener('click', () => inputNum(btn.value)));
 oprBtns.forEach(btn => btn.addEventListener('click', () => inputOpr(btn.value)));
 dotBtn.addEventListener('click', () => inputDotBtn());
