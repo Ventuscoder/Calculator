@@ -174,19 +174,19 @@ function togglePlusMin() {
 }
 
 function add(one, two) {
-    return one+two;
+    return Math.round(one+two);
 }
 
 function subtract(one, two) {
-    return one-two;
+    return Math.round(one-two);
 }
 
 function multiply(one, two) {
-    return one*two;
+    return Math.round(one*two);
 }
 
 function divide(one, two) {
-    return one/two;
+    return Math.round(one/two);
 }
 
 function deleteEventListener() {
